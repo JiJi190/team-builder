@@ -13,18 +13,24 @@ const Form = props => {
 
     const submitHandle = event => {
         event.preventDefault();
+        props.addMember(memberData);
+        setMemberData({name: "",
+        email: "",
+        role: ""})
 
     }
 
     return(
         <>
-        <form onSubmit={submitHandle}>
+        
+        
+        <form onSubmit={(event) => submitHandle(event)}>
             <input
             type="text"
             name="name"
             placeholder="Name"
-            onChange={changeHandle}
-            value=""
+            onChange={(event) => changeHandle(event)}
+            value={memberData.name}
             />
 
             
@@ -32,18 +38,23 @@ const Form = props => {
             type="text"
             name="email"
             placeholder="E-mail"
-            onChange={changeHandle}
-            value=""
+            onChange={(event) => changeHandle(event)}
+            value={memberData.email}
             />
 
             <input
             type="text"
             name="role"
             placeholder="Team Role"
-            onChange={changeHandle}
-            value=""
+            onChange={(event) => changeHandle(event)}
+            value={memberData.role}
+            />
+            <input
+            type="submit"
+            onSubmit={(event) => submitHandle(event)}
             />
         </form>
+        
         </>
     )
 }
